@@ -5,6 +5,7 @@ first = 0
 second = 0
 ops = ''
 total = 0
+somestr = ''
 
 def init_first():
     global first

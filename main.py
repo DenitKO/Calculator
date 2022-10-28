@@ -4,8 +4,8 @@ import view
 import solveString
 
 if input('Ввести выражение строкой? 1-да, 0-нет ')=='1':
-    somestr = input('Введите выражение строкой, пример (1-3)*(2+4)/(-4-4): ')
-    solveString.SolveExpression(somestr)
+    solveString.SolveExpression(model.somestr)
+    view.print_total()
 else:
     model.init_first()
     while True:

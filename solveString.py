@@ -1,4 +1,5 @@
 import logger
+import model
 
 def mult (a,b):
     c=a*b
@@ -14,7 +15,6 @@ def IsParentheses (somestr):
         if i == '(':
             return True
 
-somestr = '2*2/4'
 
 def SolveParentheses (somestr:str):
 
@@ -46,33 +46,32 @@ def SolveParentheses (somestr:str):
 
 
 def SolveExpression (somestr:str):
+    model.somestr = input('Введите выражение строкой, пример (1-3)*(2+4)/(-4-4): ')
 
     firstList = []
-    firstList = somestr.replace(' * ', ' *').replace('*', ' *').replace(' / ', ' /').replace('/', ' /').split()
-    print(firstList)
+    firstList = model.somestr.replace(' * ', ' *').replace('*', ' *').replace(' / ', ' /').replace('/', ' /').split()
 
     for i in range(len(firstList)):
         firstList[i]=SolveParentheses(firstList[i])
-    print(firstList)
 
-    first = 0
-    second = 0
-    total = 0
+    # first = 0
+    # second = 0
+    # total = 0
     operation = mult
     if len(firstList)>1:
         for i in range(0, len(firstList)):
             if i == 0:
-                first = int(firstList[0].replace('(', '').replace(')', ''))
+                model.first = int(firstList[0].replace('(', '').replace(')', ''))
             else:
                 if firstList[i][:1] == '*':
                     operation = mult
                 elif firstList[i][:1] == '/':
                     operation = div
-                second = int(firstList[i][1:].replace('(', '').replace(')', ''))
-                total = operation(first, second)
-                first = total
+                model.second = int(firstList[i][1:].replace('(', '').replace(')', ''))
+                model.total = operation(model.first, model.second)
+                model.first = model.total
     else:
-        logger.logger(f'{somestr} = {firstList[0]}')
+        logger.logger(f'{model.somestr} = {firstList[0]}')
         return firstList[0]
-    logger.logger(f'{somestr} = {total}')
-    return total
+    logger.logger(f'{model.somestr} = {model.total}')
+    return model.total
